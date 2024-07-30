@@ -52,6 +52,10 @@ final class DateParser
     {
         $this->performParse();
 
+        if ($this->yearLen <= 0 && $this->monthLen <= 0 && $this->dayLen <= 0) {
+            throw ParseException::couldNotParse($this->dateStr);
+        }
+
         if ($this->yearLen <= 0) {
             throw ParseException::missingUnit('year', $this->dateStr);
         }
